@@ -29,11 +29,10 @@ int main(int argc, char *args[]) {
     RenderWindow window("test", SCREEN_WIDTH, SCREEN_HEIGHT);
     // Create Grid
     CreateGrid grid(&window, 20);
-    Rectangle *arr = grid.createGrid(35, 35);
+    Rectangle *board = grid.createGrid(35, 35);
+    grid.grid(board, 35, 35);
 
-    grid.grid(arr, 35, 35);
-
-    SDL_RenderPresent(window.getRenderer());
+    // SDL_RenderPresent(window.getRenderer());
     
     bool isRunning = true;
     SDL_Event event;
@@ -49,10 +48,17 @@ int main(int argc, char *args[]) {
 	}
       }
       // (2) Handle Updtades
+      SDL_RenderClear(window.getRenderer());
+
+      grid.grid(board, 35, 35);
+      board = grid.check(board);
+
 
       // (3) Clear and Draw the screen
       std::cout << generation << '\n';
       generation++;
+
+      SDL_RenderPresent(window.getRenderer());
     }
 
     // for (int j = 0; j<35; j++) {

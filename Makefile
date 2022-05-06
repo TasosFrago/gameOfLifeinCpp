@@ -3,7 +3,7 @@ CC = g++
 
 TARGET = src/main.cpp
 INCLUDES = src/RenderWindow.cpp
-EXEC = bin/helloSdl
+EXEC = bin/gameOfLife
 
 #COMPILER FLAGS
 #sup = -w

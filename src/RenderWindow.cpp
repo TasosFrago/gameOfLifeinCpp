@@ -122,7 +122,7 @@ Rectangle *CreateGrid::check(Rectangle *CurBoard) {
 
   for (int j = 0; j<rowS; j++) {
     for (int i = 0; i<columnS; i++) {
-      int aliveNeighbors = 0;
+      unsigned short int aliveNeighbors = 0;
       int x = CurBoard[i*rowS+j].rect.x/20;
       int y = CurBoard[i*rowS+j].rect.y/20;
 
@@ -151,8 +151,12 @@ Rectangle *CreateGrid::check(Rectangle *CurBoard) {
 	
       }
 
-      if (aliveNeighbors > 3) {
-	
+      if (CurBoard[i*rowS+j].alive == true && (aliveNeighbors == 2 || aliveNeighbors == 3)) {
+	nBoard[i*rowS+j].alive = true;
+      } else if (CurBoard[i*rowS+j].alive == false && aliveNeighbors == 3) {
+	nBoard[i*rowS+j].alive = true;
+      } else {
+	nBoard[i*rowS+j].alive = false;
       }
 
     }
